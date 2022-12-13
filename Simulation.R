@@ -135,10 +135,10 @@ simulation1 <- function(n_obs = 50, delta = 2, case = 1, n_boot = 50){
   return(list(result_mat, coverage_mat))
 }
 
-result50 = simulation1(n_boot = 50)
-result100 = simulation1(n_boot = 100)
-result200 = simulation1(n_boot = 200)
-result500 = simulation1(n_boot = 500)
+result50 = simulation1(n_obs = 50)
+result100 = simulation1(n_obs = 100)
+result200 = simulation1(n_obs = 200)
+result500 = simulation1(n_obs = 500)
 
 
 write.csv(result50[[1]], file="~/STAT256/output/est50.csv")
@@ -178,4 +178,8 @@ var_mat[4,] = colVars(result500[[1]])
 write.csv(est_mat, file="~/STAT256/output/est.csv")
 write.csv(cov_mat, file="~/STAT256/output/cov.csv")
 write.csv(var_mat, file="~/STAT256/output/var.csv")
+
+# the sd presented in the report for TMLE is generated using the SE estimate of the TMLE output times sqrt(n_obs)
+# the sd for A-IPTW and IPTW is the same as the sd_iptw and sd_aiptw
+# sd_iptw and sd_aiptw are estimated based on influence curves
 
